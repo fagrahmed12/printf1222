@@ -1,32 +1,22 @@
-#ifndef PRINTF
-#define PRINTF
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdlib.h>
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <stdio.h>
+#include <stdarg.h>
+#include <unistd.h>
 #include <limits.h>
 
-/**
- * struct printer - conects format specifier with its corresponding function.
- * @flag: format specifier.
- * @function: pointer to @flag especific function.
- */
-typedef struct printer
-{
-	char flag;
-	int (*function)(va_list);
-} printer_t;
-
-int _putchar(char c);
+int _putchar(char character);
+int printf_char(va_list args, int printed);
+int printf_string(va_list args, int printed);
+int printf_integer(va_list args, int printed);
+int selector(const char *format, va_list args, int printed);
+int printf_binary(unsigned int num, int printed);
 int _printf(const char *format, ...);
-int print_c(va_list arg);
-int print_s(va_list arg);
-int print_i(va_list arg);
-int print_b(va_list arg);
-int print_u(va_list arg);
-int print_o(va_list arg);
-int print_x(va_list arg);
-int print_X(va_list arg);
-int print_r(va_list arg);
-int print_R(va_list arg);
+int _x(unsigned int num, int printed, int uppercase);
+int printf_octal(unsigned int num, int printed);
+int printf_unsigned(unsigned int num, int printed);
+int printf_reverse(va_list args, int printed);
+int printf_pointer(va_list args, int printed);
+
 #endif
